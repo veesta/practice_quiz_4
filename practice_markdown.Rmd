@@ -1,0 +1,69 @@
+---
+title:  "6060 Practice Quiz 3"
+author: "Veesta Mavandadi"
+output:
+  pdf_document:
+    number_sections: yes
+    toc_depth: 3
+    
+---
+# Hypotheses
+
+For simple linear regression, the chief null hypothesis is H0 : β1 = 0, and the corresponding alternative hypothesis is H1 : β1 6= 0. If this null hypothesis is true, then, from E(Y ) = β0 + β1x we can see that the population mean of Y is β0 for every x value, which tells us that x has no effect on Y . The alternative is that changes in x are associated with changes in Y. 
+
+#Analysis Plan for Each Hypothesis 
+
+A statistical power analysis was performed for sample size estimation, based on data from pilot study/published study X (N=…), comparing …. to ….. The effect size (ES) in this study was …., considered to be extremely large/large/medium/small using Cohen's (1988) criteria. With an alpha = .05 and power = 0.80, the projected sample size needed with this effect size (GPower 3.1 or other software) is approximately N = ….. for this simplest between/within group comparison. Thus, our proposed sample size of ..N+.. will be more than adequate for the main objective of this study and should also allow for expected attrition and our additional objectives of controlling for possible mediating/moderating factors/subgroup analysis, etc.
+
+
+A simple linear regression was calculated to predict DV based on IV. Examine by how many units does the DV change for each unit increase of the IV. 
+
+The associations between dependent and independent variables are presented by means of unstandardized linear regression coefficients and 95% confidence intervals. 
+
+
+#Results with APA Style Table - apa.reg.table
+
+Descriptive Statistics: Mean (SD) of IV and DV. Range of values 
+
+As planned, we used a linear regression analysis to predict DV from IV (b = .#, 95% CI[#,#]). The CI is fairly ___, but indicates that each unit of additional IV is associated with a # unit of additional DV (# to # scales). Relative to other predictors of DV, this is a ___ relationship. One caution in this analysis is the (outliers;restricted range;out of range estimates; predicting for something not in the data set; not a random sampling).
+
+Make specific predictions: 
+CI FOR MEAN: Based on this regression analysis, participants with a IV score of # would be predicted to have a DV of #, 95% CI[#,#]. This indicates that the DV in this group is likely to be (meaningful descriptor of DV). 
+
+PI FOR INDIV VALUE: Based on this regression analysis, a participant with a IV score of # would be predicted to have a DV of #, 95% PI[#,#]. This is a /very long/ prediction interval, but it indicates that a participant at this /low/ score on the IV is very /unlikely/ to be a the /highest/ level for DV. 
+
+A significant regression equation was found (F(#,#)=#,p=#), with an R2 of #. 
+
+
+```{r,echo=FALSE,message=FALSE, warning=FALSE}
+# Code goes in blocks like this
+
+# load libraries
+library(tidyverse)
+library(cocor)
+
+```
+
+#Relations among variables 
+
+## Scatter plot for Negative Affect and Neuroticism 
+
+Below you can see the correlation between negative affect and neuroticism with a regression line. 
+
+```{r,echo=FALSE,message=FALSE, warning=FALSE}
+
+## Create NA-Neur Scatter Plot
+my.scatter <- qplot(x=neg_affect,y=Neuroticism,data=analytic_data_female)
+
+#add a regression line, without the confidence interval se = false 
+#correlations in r page 6 
+
+my.scatter <- my.scatter + geom_smooth(method = "lm", se = FALSE, color='black')
+
+my.scatter <- my.scatter + labs(x="Negative Affect",y="Neuroticism")
+my.scatter <- my.scatter + theme_classic()
+my.scatter <- my.scatter + theme(axis.line.x = element_line(colour = 'black',size=0.5, linetype='solid'),
+                                 axis.line.y = element_line(colour = 'black', size=0.5, linetype='solid'))
+
+print(my.scatter)
+```
